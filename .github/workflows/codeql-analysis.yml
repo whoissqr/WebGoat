@@ -33,6 +33,7 @@ jobs:
       # Override language selection by uncommenting this and choosing your languages
       with:
          languages: java
+         java-version: 11
 
 
     # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines

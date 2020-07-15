@@ -2,9 +2,8 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [develop, ]
+    branches: [develop]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [develop]
   schedule:
     - cron: '0 17 * * 4'
@@ -34,11 +33,6 @@ jobs:
       with:
          languages: java
          java-version: 11
-
-
-    # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
-    #    and modify them (or add more) to build your code if your project
-    #    uses a compiled language
 
     - run: |
        mvn clean install

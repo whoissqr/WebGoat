@@ -15,7 +15,6 @@ jobs:
       with:
         fetch-depth: 2
  
-    - name: get pre-commit (for PR)
     - run: git checkout HEAD^2
       if: ${{ github.event_name == 'pull_request' }}
 

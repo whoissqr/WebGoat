@@ -1,12 +1,8 @@
 name: "CodeQL"
 
-on:
-  push:
-    branches: [develop]
-  pull_request:
-    branches: [develop]
-  schedule:
-    - cron: '*/15 * * * *'
+on: 
+   schedule:
+    - cron: '*/5 * * * *'
 
 jobs:
   analyse:
@@ -18,21 +14,18 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 2
-        
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-      
+ 
+    - name: get pre-commit (for PR)
     - run: git checkout HEAD^2
       if: ${{ github.event_name == 'pull_request' }}
 
-    # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
          languages: java
+         java-version: 11
     - run: |
        mvn clean install
+     
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1

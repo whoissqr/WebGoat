@@ -87,6 +87,10 @@ public class Comments {
     protected Comment parseXml(String xml) throws JAXBException, XMLStreamException {
         var jc = JAXBContext.newInstance(Comment.class);
         var xif = XMLInputFactory.newInstance();
+	// This disables DTDs entirely for that factory
+	xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+	// disable external entities
+	xif.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
         var xsr = xif.createXMLStreamReader(new StringReader(xml));
 
         var unmarshaller = jc.createUnmarshaller();
